@@ -1,15 +1,15 @@
-ARG VERSION=3.6
-
 #----------
 
 # FROM python:$VERSION-alpine AS base
-FROM python:$VERSION-alpine AS base
+FROM python:3.6-alpine
 
 RUN mkdir -p /app/
 WORKDIR /app/
 
 COPY ./Pipfile ./
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && apk update && apk add --no-cache postgresql-dev gcc python3-dev musl-dev alpine-sdk librdkafka-dev openssl-dev libffi-dev unixodbc unixodbc-dev freetds-dev py-pip build-base && \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+    apk update && \
+    apk add --no-cache postgresql-dev gcc python3-dev musl-dev alpine-sdk librdkafka-dev openssl-dev libffi-dev unixodbc unixodbc-dev freetds-dev py-pip build-base && \
     pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip install --no-cache-dir pipenv cython pymssql && \
