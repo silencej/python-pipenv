@@ -8,8 +8,6 @@ verify_ssl = true
 [packages]
 psycopg2 = "*"
 flask = "*"
-pymssql = "*"
-pymysql = "*"
 requests = "*"
 
 [requires]

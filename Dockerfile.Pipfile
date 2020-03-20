@@ -8,8 +8,8 @@ WORKDIR /app/
 
 COPY ./Pipfile ./
 RUN apk update && \
-    apk add --no-cache postgresql-dev gcc python3-dev musl-dev alpine-sdk librdkafka-dev openssl-dev libffi-dev unixodbc unixodbc-dev freetds-dev py-pip build-base && \
-    pip install --no-cache-dir pipenv cython && \
+    apk add --no-cache postgresql-dev gcc python3-dev musl-dev && \
+    pip install --no-cache-dir pipenv && \
     pipenv install 
 
 # RUN pipenv lock && pipenv install
